@@ -9,3 +9,7 @@
     background: url('../public/post-genius-bg.webp') no-repeat center center
         fixed;
 }
+.glass-effect {
+    backdrop-filter: blur(14px) saturate(130%);
+    background-color: rgba(0, 0, 0, 0.4);
+}
