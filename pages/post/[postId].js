@@ -5,7 +5,7 @@ import { ObjectId } from 'mongodb';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { AppLayout } from '../../components/AppLayout';
-import PostsContext from '../../context/postsContext';
+import PostContext from '../../context/postContext';
 import clientPromise from '../../lib/mongodb';
 import { getAppProps } from '../../utils/getAppProps';
 
@@ -13,7 +13,7 @@ export default function Post(props) {
     console.log('PROPS: ', props);
     const router = useRouter();
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-    const { deletePost } = useContext(PostsContext);
+    const { deletePost } = useContext(PostContext);
 
     const handleDeleteConfirm = async () => {
         try {
@@ -111,7 +111,7 @@ export const getServerSideProps = withPageAuthRequired({
         const props = await getAppProps(ctx);
         const userSession = await getSession(ctx.req, ctx.res);
         const client = await clientPromise;
-        const db = client.db('BlogStandard');
+        const db = client.db('post-genius');
         const user = await db.collection('users').findOne({
             auth0Id: userSession.user.sub,
         });
