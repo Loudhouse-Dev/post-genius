@@ -4,7 +4,7 @@
 
 @layer components {
     .btn {
-        @apply mb-4 pointer-events-auto bg-teal-500 tracking-wider w-full text-sm text-center text-white font-semibold hover:cursor-pointer uppercase px-4 py-2 rounded-md hover:bg-teal-800 transition-colors block;
+        @apply mb-4 pointer-events-auto bg-primary tracking-wider w-full text-sm text-center text-white font-semibold hover:cursor-pointer uppercase px-4 py-2 rounded-md transition-colors block;
     }
 }
 
@@ -32,4 +32,10 @@
 }
 .color-main {
     color: #005777;
+}
+.bg-primary {
+    background-color: #00dad2;
+}
+.bg-primary:hover {
+    background-color: #005777;
 }

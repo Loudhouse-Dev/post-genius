@@ -23,7 +23,6 @@ function MyApp({ Component, pageProps }) {
             >
                 {getLayout(<Component {...pageProps} />, pageProps)}
             </main>
-            <Component {...pageProps} />
         </UserProvider>
     );
 }
