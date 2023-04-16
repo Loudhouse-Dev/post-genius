@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .btn {
+        @apply mb-4 pointer-events-auto bg-teal-500 tracking-wider w-full text-sm text-center text-white font-semibold hover:cursor-pointer uppercase px-4 py-2 rounded-md hover:bg-teal-800 transition-colors block;
+    }
+}
+
 .home-screen {
     background: url('../public/blog-bg.webp') no-repeat center center fixed;
 }
@@ -11,5 +17,19 @@
 }
 .glass-effect {
     backdrop-filter: blur(14px) saturate(130%);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.4);
+    z-index: 10;
+}
+.overlay {
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+.color-main {
+    color: #005777;
 }
