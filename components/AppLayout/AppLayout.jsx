@@ -31,8 +31,8 @@ export const AppLayout = ({
     }, [postsFromSSR, setPostsFromSSR, postId, postCreated, getPosts]);
 
     return (
-        <div className="grid grid-cols-[400px_1fr] h-screen max-h-screen bg-gray-200 shadow-xl">
-            <div className="flex flex-col text-black overflow-hidden border-r border-r-gray-500/40">
+        <div className="page-wrap grid grid-cols-[400px_1fr] h-screen max-h-screen bg-gray-200 shadow-xl">
+            <div className="glass-effect flex flex-col text-black overflow-hidden">
                 <div className="px-4">
                     <div className="py-6 px-6">
                         <Logo />
@@ -49,13 +49,13 @@ export const AppLayout = ({
                             size="sm"
                             className="inline-block text-center text-yellow-500"
                         />
-                        <span className="pl-1">
+                        <span className="pl-1 uppercase">
                             {' '}
                             {tokensAvailable} Tokens Left{' '}
                         </span>
                     </Link>
                 </div>
-                <div className="px-4 flex-1 overflow-auto bg-gradient-to-b from-gray-300 to-slate-400">
+                <div className="px-4 flex-1 overflow-auto">
                     {posts?.map((post) => (
                         <Link
                             key={post._id}
@@ -83,7 +83,7 @@ export const AppLayout = ({
                         </div>
                     )}
                 </div>
-                <div className="bg-slate-400 flex items-center gap-3 border-t border-t-gray-200/60 h-40 px-2">
+                <div className="flex items-center gap-3 h-40 px-2">
                     {!!user ? (
                         <>
                             <div className="min-w-[50px]">
@@ -110,7 +110,7 @@ export const AppLayout = ({
                     <div></div>
                 </div>
             </div>
-            <div className="page-wrap"> {children} </div>
+            <div> {children} </div>
         </div>
     );
 };
