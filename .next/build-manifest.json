@@ -25,10 +25,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/post/new": [
+    "/token-purchase": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/post/new.js"
+      "static/chunks/pages/token-purchase.js"
     ]
   },
   "ampFirstPages": []
