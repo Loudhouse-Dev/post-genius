@@ -17,11 +17,14 @@ export const AppLayout = ({ children }) => {
                     <Link className="btn" href="/post/new">
                         Add Post
                     </Link>
-                    <Link className="text-center" href="/token-purchase">
+                    <Link
+                        className="block text-center bg-zinc-700 text-white py-2 rounded-md"
+                        href="/token-purchase"
+                    >
                         <FontAwesomeIcon
                             icon={faCoins}
                             size="text-sm"
-                            className="text-yellow-500"
+                            className="inline-block text-center text-yellow-500"
                         />
                         <span className="pl-1"> 0 Tokens </span>
                     </Link>

@@ -39,3 +39,9 @@
 .bg-primary:hover {
     background-color: #005777;
 }
+svg {
+    margin: 0 auto;
+    height: 24px;
+    width: 24px;
+    display: block;
+}
