@@ -10,7 +10,6 @@ import clientPromise from '../../lib/mongodb';
 import { getAppProps } from '../../utils/getAppProps';
 
 export default function Post(props) {
-    console.log('PROPS: ', props);
     const router = useRouter();
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const { deletePost } = useContext(PostContext);
@@ -85,13 +84,13 @@ export default function Post(props) {
                                     onClick={() => setShowDeleteConfirm(false)}
                                     className="btn bg-stone-600 hover:bg-stone-700"
                                 >
-                                    cancel
+                                    Cancel
                                 </button>
                                 <button
                                     onClick={handleDeleteConfirm}
                                     className="btn bg-red-600 hover:bg-red-700"
                                 >
-                                    confirm delete
+                                    Confirm Delete
                                 </button>
                             </div>
                         </div>
