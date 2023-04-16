@@ -1,5 +1,5 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { AppLayout } from '../components';
+import { AppLayout } from '../components/AppLayout';
 
 export default function TokenPurchase() {
     return <div>Page to purchase more tokens</div>;

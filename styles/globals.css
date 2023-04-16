@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.home-screen {
+    background: url('../public/blog-bg.webp') no-repeat center center fixed;
+}
+.page-wrap {
+    background: url('../public/post-genius-bg.webp') no-repeat center center
+        fixed;
+}
