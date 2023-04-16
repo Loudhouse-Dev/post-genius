@@ -1,17 +1,17 @@
 import { useRouter } from 'next/router';
 import React, { useCallback, useReducer, useState } from 'react';
 
-const PostsContext = React.createContext({});
+const PostContext = React.createContext({});
 
-export default PostsContext;
+export default PostContext;
 
 function postsReducer(state, action) {
     switch (action.type) {
         case 'addPosts': {
             const newPosts = [...state];
             action.posts.forEach((post) => {
-                const exists = newPosts.find((p) => p._id === post._id);
-                if (!exists) {
+                const postExists = newPosts.find((p) => p._id === post._id);
+                if (!postExists) {
                     newPosts.push(post);
                 }
             });
@@ -31,7 +31,7 @@ function postsReducer(state, action) {
     }
 }
 
-export const PostsProvider = ({ children }) => {
+export const PostProvider = ({ children }) => {
     const [posts, dispatch] = useReducer(postsReducer, []);
     const [noMorePosts, setNoMorePosts] = useState(false);
 
@@ -72,7 +72,7 @@ export const PostsProvider = ({ children }) => {
     );
 
     return (
-        <PostsContext.Provider
+        <PostContext.Provider
             value={{
                 posts,
                 setPostsFromSSR,
@@ -82,6 +82,6 @@ export const PostsProvider = ({ children }) => {
             }}
         >
             {children}
-        </PostsContext.Provider>
+        </PostContext.Provider>
     );
 };

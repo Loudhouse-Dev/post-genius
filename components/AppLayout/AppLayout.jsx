@@ -16,11 +16,11 @@ export const AppLayout = ({
 }) => {
     const { user, error, isLoading } = useUser();
 
-    const { setPostsFromSSr, posts, getPosts, noMorePosts } =
+    const { setPostsFromSSR, posts, getPosts, noMorePosts } =
         useContext(PostContext);
 
     useEffect(() => {
-        setPostsFromSSr(postsFromSSR);
+        setPostsFromSSR(postsFromSSR);
         if (postId) {
             const postExists = posts.find((post) => post._id === postId);
             if (!postExists) {
@@ -28,7 +28,7 @@ export const AppLayout = ({
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [postsFromSSR, setPostsFromSSr, postId, postCreated, getPosts]);
+    }, [postsFromSSR, setPostsFromSSR, postId, postCreated, getPosts]);
 
     return (
         <div className="grid grid-cols-[400px_1fr] h-screen max-h-screen bg-gray-200 shadow-xl">
@@ -46,7 +46,7 @@ export const AppLayout = ({
                     >
                         <FontAwesomeIcon
                             icon={faCoins}
-                            size="text-sm"
+                            size="sm"
                             className="inline-block text-center text-yellow-500"
                         />
                         <span className="pl-1">
@@ -55,8 +55,8 @@ export const AppLayout = ({
                         </span>
                     </Link>
                 </div>
-                <div className="px-4 flex-1 overflow-auto bg-gradient-to-b from-slate-800 to-cyan-800">
-                    {posts.map((post) => (
+                <div className="px-4 flex-1 overflow-auto bg-gradient-to-b from-gray-300 to-slate-400">
+                    {posts?.map((post) => (
                         <Link
                             key={post._id}
                             href={`/post/${post._id}`}
@@ -83,7 +83,7 @@ export const AppLayout = ({
                         </div>
                     )}
                 </div>
-                <div className="bg-gray-300 flex items-center gap-3 border-t border-t-gray-200/60 h-40 px-2">
+                <div className="bg-slate-400 flex items-center gap-3 border-t border-t-gray-200/60 h-40 px-2">
                     {!!user ? (
                         <>
                             <div className="min-w-[50px]">
