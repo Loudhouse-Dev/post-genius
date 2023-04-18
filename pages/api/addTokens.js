@@ -27,11 +27,13 @@ export default async function handler(req, res) {
         line_items: lineItems,
         mode: 'payment',
         success_url: `${protocol}${host}/success`,
+        //here we use the user.sub from Auth0 to pass to Stripe
         payment_intent_data: {
             metadata: {
                 sub: user.sub,
             },
         },
+        //metadata must be passed to both places
         metadata: {
             sub: user.sub,
         },

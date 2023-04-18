@@ -7,6 +7,7 @@ const cors = Cors({
     allowMethods: ['POST', 'HEAD'],
 });
 
+//need to disable body parser for stripe webhooks so we get the raw data
 export const config = {
     api: {
         bodyParser: false,
@@ -16,6 +17,7 @@ export const config = {
 const stripe = stripeInit(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
+//stripe webhook handler. Next is locked down to external requests, so we need to use a custom server
 const handler = async (req, res) => {
     if (req.method === 'POST') {
         let event;
@@ -30,9 +32,10 @@ const handler = async (req, res) => {
         }
 
         switch (event.type) {
+            //for successful payments, add 10 tokens to the user's account
             case 'payment_intent.succeeded': {
                 const client = await clientPromise;
-                const db = client.db('BlogStandard');
+                const db = client.db('post-genius');
 
                 const paymentIntent = event.data.object;
                 const auth0Id = paymentIntent.metadata.sub;
