@@ -12,7 +12,7 @@ export const AppLayout = ({
     postId,
     postCreated,
     posts: postsFromSSR,
-    tokensAvailable,
+    availableTokens,
 }) => {
     const { user, error, isLoading } = useUser();
 
@@ -51,7 +51,7 @@ export const AppLayout = ({
                         />
                         <span className="pl-1 uppercase">
                             {' '}
-                            {tokensAvailable} Tokens Left{' '}
+                            {availableTokens} Tokens Left{' '}
                         </span>
                     </Link>
                 </div>

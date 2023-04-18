@@ -5,7 +5,10 @@ import stripeInit from 'stripe';
 const stripe = stripeInit(process.env.STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
+    //destructure user from session
+    //check for active section (is user logged in?)
     const { user } = await getSession(req, res);
+    console.log('user: ', user);
 
     //Set up Stripe Checkout Session
     //normally an array of objects (products), but we only have one product
@@ -16,6 +19,29 @@ export default async function handler(req, res) {
             quantity: 1,
         },
     ];
+
+    const client = await clientPromise;
+    const db = client.db('post-genius');
+
+    //check if user.sub exists in db
+    //if not use upsert to create a new document for user.sub
+    //if so, increment availableTokens by 10
+    const userProfile = await db.collection('users').updateOne(
+        {
+            auth0Id: user.sub,
+        },
+        {
+            $inc: {
+                availableTokens: 10,
+            },
+            $setOnInsert: {
+                auth0Id: user.sub,
+            },
+        },
+        {
+            upsert: true,
+        }
+    );
 
     const protocol =
         //http for local, https for prod

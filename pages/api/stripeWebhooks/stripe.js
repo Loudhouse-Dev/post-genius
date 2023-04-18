@@ -62,6 +62,7 @@ const handler = async (req, res) => {
             default:
                 console.log('UNHANDLED EVENT: ', event.type);
         }
+        //Return a response to acknowledge receipt of the event
         res.status(200).json({ received: true });
     }
 };

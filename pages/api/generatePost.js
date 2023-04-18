@@ -5,7 +5,7 @@ import clientPromise from '../../lib/mongodb';
 export default withApiAuthRequired(async function handler(req, res) {
     const { user } = await getSession(req, res);
     const client = await clientPromise;
-    const db = client.db('BlogStandard');
+    const db = client.db('post-genius');
     const userProfile = await db.collection('users').findOne({
         auth0Id: user.sub,
     });
@@ -20,14 +20,14 @@ export default withApiAuthRequired(async function handler(req, res) {
     });
     const openai = new OpenAIApi(config);
 
-    const { topic, keywords } = req.body;
+    const { postTopic, keywords } = req.body;
 
-    if (!topic || !keywords) {
+    if (!postTopic || !keywords) {
         res.status(422);
         return;
     }
 
-    if (topic.length > 80 || keywords.length > 80) {
+    if (postTopic.length > 80 || keywords.length > 80) {
         res.status(422);
         return;
     }
@@ -46,7 +46,7 @@ export default withApiAuthRequired(async function handler(req, res) {
             {
                 //here, we are using the user role to tell the model what we want it to do
                 role: 'user',
-                content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. 
+                content: `Write a long and detailed SEO-friendly blog post about ${postTopic}, that targets the following comma-separated keywords: ${seoKeywords}. 
       The response should be formatted in SEO-friendly HTML, 
       limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, i, ul, li, ol.`,
             },
@@ -69,7 +69,7 @@ export default withApiAuthRequired(async function handler(req, res) {
             },
             {
                 role: 'user',
-                content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. 
+                content: `Write a long and detailed SEO-friendly blog post about ${postTopic}, that targets the following comma-separated keywords: ${seoKeywords}. 
       The response should be formatted in SEO-friendly HTML, 
       limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, i, ul, li, ol.`,
             },
@@ -95,7 +95,7 @@ export default withApiAuthRequired(async function handler(req, res) {
             },
             {
                 role: 'user',
-                content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. 
+                content: `Write a long and detailed SEO-friendly blog post about ${postTopic}, that targets the following comma-separated keywords: ${seoKeywords}. 
       The response should be formatted in SEO-friendly HTML, 
       limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, i, ul, li, ol.`,
             },
@@ -120,22 +120,23 @@ export default withApiAuthRequired(async function handler(req, res) {
     console.log('TITLE: ', title);
     console.log('META DESCRIPTION: ', metaDescription);
 
-    /*await db.collection('users').updateOne(
-  {
-    auth0Id: user.sub,
-  },
-  {
-    $inc: {
-      availableTokens: -1,
-    },
-  }
-);*/
+    //in mongodb, we are going to decrement our available tokens by 1
+    await db.collection('users').updateOne(
+        {
+            auth0Id: user.sub,
+        },
+        {
+            $inc: {
+                availableTokens: -1,
+            },
+        }
+    );
 
     const post = await db.collection('posts').insertOne({
         postContent: postContent || '',
         title: title || '',
         metaDescription: metaDescription || '',
-        topic,
+        postTopic,
         keywords,
         userId: userProfile._id,
         created: new Date(),

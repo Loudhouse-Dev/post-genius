@@ -17,7 +17,7 @@ export default function TokenPurchase() {
             <div className="glass-effect w-3/4 mt-8 py-8 px-8 rounded-md text-center shadow-xl">
                 <h1 className="mb-6 font-heading text-xl">Add Tokens</h1>
                 <button className="btn w-1/2 mx-auto" onClick={handleClick}>
-                    Add tokens
+                    Click to Buy More Tokens
                 </button>
             </div>
         </div>

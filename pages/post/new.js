@@ -7,7 +7,7 @@ import { AppLayout } from '../../components/AppLayout';
 import { getAppProps } from '../../utils/getAppProps';
 
 export default function NewPost(props) {
-    router = useRouter();
+    const router = useRouter();
 
     //state variables for the form
     const [postTopic, setPostTopic] = useState('');
@@ -59,7 +59,7 @@ export default function NewPost(props) {
                             </label>
                             <textarea
                                 className="resize-none w-full block my-2 px-4 py-2 rounded-sm"
-                                value={topic}
+                                value={postTopic}
                                 onChange={(e) => setPostTopic(e.target.value)}
                                 maxLength={80}
                             />
