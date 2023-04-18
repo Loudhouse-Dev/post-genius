@@ -5,7 +5,10 @@ import { getAppProps } from '../utils/getAppProps';
 export default function Success() {
     return (
         <div>
-            <h1>Thank you for your purchase!</h1>
+            <h1>
+                Thank you for your purchase, tokens have been added to your
+                account!
+            </h1>
         </div>
     );
 }
