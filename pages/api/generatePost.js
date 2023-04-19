@@ -20,14 +20,14 @@ export default withApiAuthRequired(async function handler(req, res) {
     });
     const openai = new OpenAIApi(config);
 
-    const { postTopic, keywords } = req.body;
+    const { postTopic, seoKeywords } = req.body;
 
-    if (!postTopic || !keywords) {
+    if (!postTopic || !seoKeywords) {
         res.status(422);
         return;
     }
 
-    if (postTopic.length > 80 || keywords.length > 80) {
+    if (postTopic.length > 80 || seoKeywords.length > 80) {
         res.status(422);
         return;
     }
@@ -137,7 +137,7 @@ export default withApiAuthRequired(async function handler(req, res) {
         title: title || '',
         metaDescription: metaDescription || '',
         postTopic,
-        keywords,
+        seoKeywords,
         userId: userProfile._id,
         created: new Date(),
     });

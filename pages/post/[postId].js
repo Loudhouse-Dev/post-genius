@@ -47,7 +47,7 @@ export default function Post(props) {
                     Keywords
                 </div>
                 <div className="flex flex-wrap pt-2 gap-1">
-                    {props.keywords.split(',').map((keyword, i) => (
+                    {props.seoKeywords.split(',').map((keyword, i) => (
                         <div
                             key={i}
                             className="p-2 rounded-full bg-slate-800 text-white"
@@ -134,7 +134,7 @@ export const getServerSideProps = withPageAuthRequired({
                 postContent: post.postContent,
                 title: post.title,
                 metaDescription: post.metaDescription,
-                keywords: post.keywords,
+                seoKeywords: post.seoKeywords,
                 postCreated: post.created.toString(),
                 ...props,
             },
