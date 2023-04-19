@@ -45,7 +45,7 @@ export default async function handler(req, res) {
 
     const protocol =
         //http for local, https for prod
-        process.env.NODE_ENV === 'development' ? 'http://' : 'https://';
+        process.env.NODE_ENV === 'https://';
     const host = req.headers.host;
 
     //init a Stripe Checkout Session
