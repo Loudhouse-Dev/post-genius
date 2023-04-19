@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
         <UserProvider>
             <PostProvider>
                 <main
-                    className={`${archivo.variable} ${archivoBlack.variable} font-body`}
+                    className={`${archivo.variable} ${archivoBlack.variable} font-body xl:overflow-hidden xl:h-screen`}
                 >
                     {getLayout(<Component {...pageProps} />, pageProps)}
                 </main>

@@ -32,34 +32,29 @@ export default function Post(props) {
     };
 
     return (
-        <div className="overflow-auto h-full">
-            <div className="max-w-screen-sm mx-auto">
-                <div className="text-sm font-bold mt-6 p-2 bg-stone-200 rounded-sm">
-                    SEO title and meta description
-                </div>
-                <div className="p-4 my-2 border border-stone-200 rounded-md">
-                    <div className="text-blue-600 text-2xl font-bold">
+        <div className="flex lg:items-center justify-center xl:h-screen xl:max-h-screen w-full">
+            <div className="glass-effect w-3/4 mt-8 p-8 rounded-md shadow-xl h-5/6 max-w-screen-sm mx-auto overflow-y-scroll">
+                <h4 className="heading">SEO title and meta description</h4>
+                <div className="p-4 pt-0 my-2 rounded-md">
+                    <div className="font-heading text-zinc-800 text-2xl font-bold">
                         {props.title}
                     </div>
                     <div className="mt-2">{props.metaDescription}</div>
                 </div>
-                <div className="text-sm font-bold mt-6 p-2 bg-stone-200 rounded-sm">
-                    Keywords
-                </div>
-                <div className="flex flex-wrap pt-2 gap-1">
+                <h4 className="heading">Keywords</h4>
+                <div className="flex flex-wrap pt-2 gap-2">
                     {props.seoKeywords.split(',').map((keyword, i) => (
                         <div
                             key={i}
-                            className="p-2 rounded-full bg-slate-800 text-white"
+                            className="text-xs uppercase p-4 rounded-lg bg-secondary text-neutral-200 border-0"
                         >
-                            <FontAwesomeIcon icon={faHashtag} /> {keyword}
+                            <span>{keyword}</span>
                         </div>
                     ))}
                 </div>
-                <div className="text-sm font-bold mt-6 p-2 bg-stone-200 rounded-sm">
-                    Blog post
-                </div>
+
                 <div
+                    className="post-content text-left"
                     dangerouslySetInnerHTML={{
                         __html: props.postContent || '',
                     }}

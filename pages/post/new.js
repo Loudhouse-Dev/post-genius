@@ -38,18 +38,21 @@ export default function NewPost(props) {
     };
 
     return (
-        <div className="h-full overflow-hidden">
+        <div className="flex items-center justify-center h-full w-full">
             {!!generating && (
-                <div className="color-main flex h-full animate-pulse w-full flex-col justify-center items-center">
-                    <FontAwesomeIcon icon={faBrain} className="text-8xl" />
-                    <h6>Generating...</h6>
+                <div className="flex h-full animate-pulse w-full flex-col justify-center items-center">
+                    <FontAwesomeIcon
+                        icon={faBrain}
+                        className="text-white text-8xl"
+                    />
+                    <h6 className="text-white">Generating...</h6>
                 </div>
             )}
             {!generating && (
-                <div className="w-full h-full flex flex-col overflow-auto glass-effect mx-auto">
+                <div className="glass-effect w-3/4 mt-8 py-8 px-8 rounded-md text-center shadow-xl max-w-screen-sm mx-auto">
                     <form
                         onSubmit={handleSubmit}
-                        className="m-auto w-full max-w-screen-sm bg-slate-100 p-4 rounded-md"
+                        className="m-auto w-full max-w-screen-sm bg-slate-700 text-white p-6 rounded-md"
                     >
                         <div>
                             <label>
@@ -58,7 +61,7 @@ export default function NewPost(props) {
                                 </strong>
                             </label>
                             <textarea
-                                className="resize-none w-full block my-2 px-4 py-2 rounded-sm"
+                                className="text-black resize-none w-full block my-2 px-4 py-2 rounded-sm"
                                 value={postTopic}
                                 onChange={(e) => setPostTopic(e.target.value)}
                                 maxLength={80}
@@ -71,7 +74,7 @@ export default function NewPost(props) {
                                 </strong>
                             </label>
                             <textarea
-                                className="resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
+                                className="text-black resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
                                 value={seoKeywords}
                                 onChange={(e) => setSeoKeywords(e.target.value)}
                                 maxLength={80}

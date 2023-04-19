@@ -31,8 +31,8 @@ export const AppLayout = ({
     }, [postsFromSSR, setPostsFromSSR, postId, postCreated, getPosts]);
 
     return (
-        <div className="page-wrap grid grid-cols-[400px_1fr] h-screen max-h-screen bg-gray-200 shadow-xl">
-            <div className="glass-effect flex flex-col text-black overflow-hidden">
+        <div className="xl:grid xl:grid-cols-[400px_1fr] xl:h-screen xl:max-h-screen shadow-xl">
+            <div className="glass-effect flex flex-col text-black max-h-full">
                 <div className="px-4">
                     <div className="py-6 px-6">
                         <Logo />
@@ -41,7 +41,7 @@ export const AppLayout = ({
                         Add Post
                     </Link>
                     <Link
-                        className="block text-center bg-zinc-700 text-white py-2 rounded-md"
+                        className="block text-center mb-8 bg-zinc-700 text-white py-2 rounded-md"
                         href="/token-purchase"
                     >
                         <FontAwesomeIcon
@@ -55,18 +55,19 @@ export const AppLayout = ({
                         </span>
                     </Link>
                 </div>
+                <h4 className="text-center font-heading"> Previous Posts</h4>
                 <div className="px-4 flex-1 overflow-auto">
                     {posts?.map((post) => (
                         <Link
                             key={post._id}
                             href={`/post/${post._id}`}
-                            className={`py-1 border border-white/0 block text-ellipsis overflow-hidden whitespace-nowrap my-1 px-2 bg-white/10 cursor-pointer rounded-sm ${
+                            className={`py-3 block text-ellipsis overflow-hidden whitespace-nowrap my-2 px-2 rounded-md bg-white/10 cursor-pointer ${
                                 postId === post._id
-                                    ? 'bg-white/20 border-white'
+                                    ? 'bg-secondary text-white'
                                     : ''
                             }`}
                         >
-                            {post.topic}
+                            {post.postTopic}
                         </Link>
                     ))}
                     {!noMorePosts && (
@@ -77,7 +78,7 @@ export const AppLayout = ({
                                         posts[posts.length - 1].created,
                                 });
                             }}
-                            className="hover:underline text-sm text-slate-400 text-center cursor-pointer mt-4"
+                            className="btn-secondary"
                         >
                             Load more posts
                         </div>
